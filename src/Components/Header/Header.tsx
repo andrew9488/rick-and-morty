@@ -1,6 +1,6 @@
 import React from 'react';
 import {AppBar, Toolbar, Typography} from '@material-ui/core';
-import {useStyles} from "./MaterialUIstyles";
+import {useStyles} from "./materialUIstyles";
 
 
 export const Header: React.FC = () => {

@@ -1,28 +1,23 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React from 'react';
 import {MuiThemeProvider} from "@material-ui/core";
 import {Header} from "../Components/Header/Header";
 import {Footer} from "../Components/Footer/Footer";
 import {Menu} from "../Components/Menu/Menu";
 import {theme} from '../utils/themeMaterialUI';
-import {dataRequestAC} from "../store/images-reducer/actions";
 import './App.css';
-import {AppRootStateType, ResultType} from "../types/types";
+import {Main} from "../Components/Main/Main";
 
 export const App: React.FC = () => {
-
-    const dispatch = useDispatch()
-    const images = useSelector<AppRootStateType, ResultType[]>(state => state.images.images)
-    useEffect(() => {
-        dispatch(dataRequestAC())
-    }, [])
-
 
     return (
         <div className="App">
             <MuiThemeProvider theme={theme}>
                 <Header/>
-                <Menu/>
+                <div className="mainBlock">
+                    <Menu/>
+                    {/*<Routes/>*/}
+                    <Main/>
+                </div>
                 <Footer/>
             </MuiThemeProvider>
         </div>

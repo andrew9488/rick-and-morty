@@ -1,0 +1,15 @@
+.mainContainer{
+    width: 100%;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message{
+    text-align: center;
+}
+
+.error{
+    text-align: center;
+    color: #e53935;
+}

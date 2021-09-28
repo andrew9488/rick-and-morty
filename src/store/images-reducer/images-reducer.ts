@@ -3,7 +3,7 @@ import {ImagesReducerActionType, ImagesReducerInitialStateType, InfoType, Result
 export const imagesReducerInitialState = {
     pending: false,
     info: {} as InfoType,
-    images: [] as ResultType[]
+    results: [] as ResultType[]
 }
 
 export const imagesReducer = (state: ImagesReducerInitialStateType = imagesReducerInitialState, action: ImagesReducerActionType): ImagesReducerInitialStateType => {
@@ -12,7 +12,7 @@ export const imagesReducer = (state: ImagesReducerInitialStateType = imagesReduc
             return {
                 ...state,
                 info: action.data.info,
-                images: action.data.results,
+                results: action.data.results,
                 pending: false
             }
         case "IMAGES/DATA-REQUEST":
