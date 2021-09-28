@@ -1,5 +1,5 @@
 import axios from "axios";
-import {ResponseType} from "../types/types";
+import {ResponseDataType} from "../types/types";
 
 const instance = axios.create({
     baseURL: "https://rickandmortyapi.com/"
@@ -7,6 +7,6 @@ const instance = axios.create({
 
 export const rickAndMortyAPI = {
     getImages() {
-        return instance.get<ResponseType>("api/character/").then(response => response.data)
+        return instance.get<ResponseDataType>("api/character/").then(response => response.data)
     },
 };

@@ -1,29 +1,30 @@
 import {rootReducer} from "../store/store";
 import {appReducerInitialState} from "../store/app-reducer/app-reducer";
-import {setAppErrorAC, setAppStatusAC, setIsInitializedAC} from "../store/app-reducer/actions";
+import {imagesReducerInitialState} from "../store/image-reducer/images-reducer";
+import {setAppErrorAC, setAppStatusAC} from "../store/app-reducer/actions";
+import {setDataAC} from "../store/image-reducer/actions";
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
 
 export type AppReducerInitialStateType = typeof appReducerInitialState;
+export type ImagesReducerInitialStateType = typeof imagesReducerInitialState;
 
 
-export type AppReducerActionType =
-    | ReturnType<typeof setAppStatusAC>
-    | ReturnType<typeof setAppErrorAC>
-    | ReturnType<typeof setIsInitializedAC>;
+export type AppReducerActionType = ReturnType<typeof setAppStatusAC> | ReturnType<typeof setAppErrorAC>
+export type ImagesReducerActionType = ReturnType<typeof setDataAC>
 
 
 export type AppRootStateType = ReturnType<typeof rootReducer>;
 
 
-type InfoType = {
+export type InfoType = {
     count: number
     pages: number
     next: string | null
     prev: string | null
 }
 
-type ResultType = {
+export type ResultType = {
     id: number
     name: string
     status: string
@@ -38,7 +39,7 @@ type ResultType = {
     created: string
 }
 
-export type ResponseType = {
+export type ResponseDataType = {
     info: InfoType
     results: ResultType[]
 }

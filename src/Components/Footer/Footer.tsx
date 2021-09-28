@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h4" className={classes.title}>
-                        Copyrights
+                        Innowise Group
                     </Typography>
                 </Toolbar>
             </AppBar>
