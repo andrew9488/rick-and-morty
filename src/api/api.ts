@@ -7,6 +7,7 @@ const instance = axios.create({
 
 export const rickAndMortyAPI = {
     getImages() {
-        return instance.get<ResponseDataType>("api/character/").then(response => response.data)
+        return instance.get<ResponseDataType>("api/character/")
+            .then(response => response.data)
     },
 };

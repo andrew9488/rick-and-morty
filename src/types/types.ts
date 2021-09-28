@@ -2,7 +2,7 @@ import {rootReducer} from "../store/store";
 import {appReducerInitialState} from "../store/app-reducer/app-reducer";
 import {imagesReducerInitialState} from "../store/images-reducer/images-reducer";
 import {setAppErrorAC, setAppStatusAC} from "../store/app-reducer/actions";
-import {setDataAC} from "../store/images-reducer/actions";
+import {dataRequestAC, setDataAC} from "../store/images-reducer/actions";
 import {favoritesReducerInitialState} from "../store/favorite-reducer/favorite-reducer";
 import {setFavoriteImage} from "../store/favorite-reducer/actions";
 
@@ -14,7 +14,7 @@ export type FavoritesReducerInitialStateType = typeof favoritesReducerInitialSta
 
 
 export type AppReducerActionType = ReturnType<typeof setAppStatusAC> | ReturnType<typeof setAppErrorAC>
-export type ImagesReducerActionType = ReturnType<typeof setDataAC>
+export type ImagesReducerActionType = ReturnType<typeof setDataAC> | ReturnType<typeof dataRequestAC>
 export type FavoriteReducerActionType = ReturnType<typeof setFavoriteImage>
 
 
