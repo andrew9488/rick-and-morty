@@ -14,3 +14,31 @@ export type AppReducerActionType =
 
 
 export type AppRootStateType = ReturnType<typeof rootReducer>;
+
+
+type InfoType = {
+    count: number
+    pages: number
+    next: string | null
+    prev: string | null
+}
+
+type ResultType = {
+    id: number
+    name: string
+    status: string
+    species: string
+    type: string
+    gender: string
+    origin: { name: string, url: string }
+    location: { name: string, url: string }
+    image: string
+    episode: string[]
+    url: string
+    created: string
+}
+
+export type ResponseType = {
+    info: InfoType
+    results: ResultType[]
+}
