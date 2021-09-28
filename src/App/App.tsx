@@ -3,9 +3,9 @@ import {MuiThemeProvider} from "@material-ui/core";
 import {Header} from "../Components/Header/Header";
 import {Footer} from "../Components/Footer/Footer";
 import {Menu} from "../Components/Menu/Menu";
+import {Routes} from "../Components/Routes/Routes";
 import {theme} from '../utils/themeMaterialUI';
 import './App.css';
-import {Main} from "../Components/Main/Main";
 
 export const App: React.FC = () => {
 
@@ -15,8 +15,7 @@ export const App: React.FC = () => {
                 <Header/>
                 <div className="mainBlock">
                     <Menu/>
-                    {/*<Routes/>*/}
-                    <Main/>
+                    <Routes/>
                 </div>
                 <Footer/>
             </MuiThemeProvider>

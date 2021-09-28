@@ -11,6 +11,7 @@ export const useStyles = makeStyles(() =>
             flexDirection: "column",
             alignItems: "center",
             background: "#8080801f",
+            position: "relative",
             "&:hover": {
                 boxShadow: "4px 4px 12px rgba(0, 0, 0, 0.4)"
             }
@@ -19,5 +20,17 @@ export const useStyles = makeStyles(() =>
             height: 275,
             width: 275,
         },
+        star: {
+            position: "absolute",
+            right: 5,
+            top: 5,
+            color: "white",
+        },
+        isFavorite: {
+            position: "absolute",
+            right: 5,
+            top: 5,
+            color: "gold",
+        }
     })
 )
