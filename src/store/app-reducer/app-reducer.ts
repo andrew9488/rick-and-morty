@@ -21,11 +21,6 @@ export const appReducer = (
                 ...state,
                 error: action.error,
             };
-        case 'APP/SET-IS-INITIALIZED':
-            return {
-                ...state,
-                isInitialized: action.isInitialized,
-            };
         default:
             return state;
     }

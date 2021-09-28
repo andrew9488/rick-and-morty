@@ -3,7 +3,8 @@ import {NavLink} from 'react-router-dom';
 import {Paper, Tab, Tabs} from '@material-ui/core';
 import {Cloud, Star} from "@material-ui/icons";
 import {Path} from "../Routes/Path";
-import {useStyles} from "./MaterialUIstyles";
+import {useStyles} from "./materialUIstyles";
+
 
 export const Menu: React.FC = () => {
 
