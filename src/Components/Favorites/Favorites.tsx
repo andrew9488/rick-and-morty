@@ -1,13 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {ImagesGallery} from "../ImagesGalery/ImagesGalery";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {favoritesSelector} from "../../store/selectors";
 import styles from "./Favorites.module.css";
+import {getFavoriteImage} from "../../store/favorites-reducer/actions";
 
 export const Favorites: React.FC = () => {
 
     const favorites = useSelector(favoritesSelector)
+    const dispatch = useDispatch()
     const haveFavorites = favorites && favorites.length !== 0
+
+    useEffect(() => {
+        dispatch(getFavoriteImage())
+    }, [])
 
     return (
         <div className={styles.favoritesContainer}>

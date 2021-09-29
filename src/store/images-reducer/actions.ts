@@ -4,13 +4,14 @@ import {setAppErrorAC, setAppStatusAC} from "../app-reducer/actions";
 import {errorMessage} from "../../utils/helpers/erroreMessage";
 import {ResponseDataType} from "../../types/types";
 
-export const dataRequestAC = () =>
-    ({type: "IMAGES/DATA-REQUEST"} as const)
+const DATA_REQUEST_SAGA = "DATA-REQUEST-SAGA"
+
+export const dataRequest = () => ({type: DATA_REQUEST_SAGA})
 
 export const setDataAC = (data: ResponseDataType) =>
     ({type: "IMAGES/SET-DATA", data} as const)
 
-function* fetchImagesSaga() {
+function* fetchImages() {
     try {
         yield put(setAppStatusAC("loading"))
         const response: ResponseDataType = yield call(rickAndMortyAPI.getImages)
@@ -26,6 +27,6 @@ function* fetchImagesSaga() {
 //     yield  all([takeLatest(dataRequestAC().type, fetchImagesSaga)])
 // }
 
-export function* imagesSaga() {
-    yield takeEvery(dataRequestAC().type, fetchImagesSaga)
+export function* fetchImagesSaga() {
+    yield takeEvery(DATA_REQUEST_SAGA, fetchImages)
 }

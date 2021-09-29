@@ -20,17 +20,19 @@ export const useStyles = makeStyles(() =>
             height: 275,
             width: 275,
         },
-        star: {
+        isNotFavorite: {
             position: "absolute",
             right: 5,
             top: 5,
-            color: "white",
+            color: "#FAFAFA",
+            cursor: "pointer"
         },
         isFavorite: {
             position: "absolute",
             right: 5,
             top: 5,
-            color: "gold",
+            color: "#FFC400",
+            cursor: "pointer"
         }
     })
 )

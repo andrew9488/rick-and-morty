@@ -2,8 +2,8 @@ import {rootReducer} from "../store/store";
 import {appReducerInitialState} from "../store/app-reducer/app-reducer";
 import {imagesReducerInitialState} from "../store/images-reducer/images-reducer";
 import {setAppErrorAC, setAppStatusAC} from "../store/app-reducer/actions";
-import {dataRequestAC, setDataAC} from "../store/images-reducer/actions";
-import {deleteFavoriteImage, setFavoriteImage} from "../store/favorites-reducer/actions";
+import {setDataAC} from "../store/images-reducer/actions";
+import {addFavoriteImageAC, deleteFavoriteImageAC, setFavoriteImageAC} from "../store/favorites-reducer/actions";
 import {favoritesReducerInitialState} from "../store/favorites-reducer/favorites-reducer";
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -16,12 +16,12 @@ export type FavoritesReducerInitialStateType = typeof favoritesReducerInitialSta
 
 
 export type AppReducerActionType = ReturnType<typeof setAppStatusAC> | ReturnType<typeof setAppErrorAC>
-export type ImagesReducerActionType = ReturnType<typeof setDataAC> | ReturnType<typeof dataRequestAC>
-export type FavoriteReducerActionType = ReturnType<typeof setFavoriteImage> | ReturnType<typeof deleteFavoriteImage>
-
+export type ImagesReducerActionType = ReturnType<typeof setDataAC>
+export type FavoriteReducerActionType = ReturnType<typeof setFavoriteImageAC>
+    | ReturnType<typeof deleteFavoriteImageAC>
+    | ReturnType<typeof addFavoriteImageAC>
 
 export type AppRootStateType = ReturnType<typeof rootReducer>;
-
 
 export type InfoType = {
     count: number

@@ -4,7 +4,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import {useStyles} from "./materialUIstyles";
 import {Star} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
-import {deleteFavoriteImage, setFavoriteImage} from "../../../store/favorites-reducer/actions";
+import {addFavoriteImage, deleteFavoriteImage} from "../../../store/favorites-reducer/actions";
 import {ImageType} from "../../../types/types";
 
 type ImagePropsType = {
@@ -21,11 +21,11 @@ export const Image: React.FC<ImagePropsType> = React.memo(({image, isFavorite}) 
         if (isFavorite) {
             dispatch(deleteFavoriteImage(image.id))
         } else {
-            dispatch(setFavoriteImage(image))
+            dispatch(addFavoriteImage(image))
         }
     }
 
-    const isFavoriteClass = isFavorite ? styles.isFavorite : styles.star
+    const isFavoriteClass = isFavorite ? styles.isFavorite : styles.isNotFavorite
 
     return (
         <Card className={styles.root}>

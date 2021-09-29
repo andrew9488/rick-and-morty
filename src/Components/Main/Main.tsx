@@ -1,10 +1,11 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {ImagesGallery} from "../ImagesGalery/ImagesGalery";
-import {dataRequestAC} from "../../store/images-reducer/actions"
+import {dataRequest} from "../../store/images-reducer/actions"
 import {imagesSelector} from "../../store/selectors";
 import styles from "./Main.module.css";
 import {Pagination} from "../Pagination/Paginator";
+import {getFavoriteImage} from "../../store/favorites-reducer/actions";
 
 export const Main: React.FC = () => {
 
@@ -12,7 +13,8 @@ export const Main: React.FC = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(dataRequestAC())
+        dispatch(dataRequest())
+        dispatch(getFavoriteImage())
     }, [])
 
     return (

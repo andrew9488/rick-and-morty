@@ -6,7 +6,12 @@ export const favoritesReducerInitialState = {
 
 export const favoritesReducer = (state: FavoritesReducerInitialStateType = favoritesReducerInitialState, action: FavoriteReducerActionType): FavoritesReducerInitialStateType => {
     switch (action.type) {
-        case "FAVORITE/SET-FAVORITE-IMAGE":
+        case "FAVORITE/SET-FAVORITES-IMAGE":
+            return {
+                ...state,
+                favorites: action.favorites
+            }
+        case "FAVORITE/ADD-FAVORITE-IMAGE":
             return {
                 ...state,
                 favorites: [...state.favorites, action.favorite]
