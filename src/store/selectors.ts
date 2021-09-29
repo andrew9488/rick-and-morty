@@ -1,10 +1,11 @@
 import {AppRootStateType} from "../types/types";
 import {createSelector} from "reselect";
 
-const getResults = (state: AppRootStateType) => state.images.results
+export const getResults = (state: AppRootStateType) => state.images.results
 const getNumbersOfPages = (state: AppRootStateType) => state.images.info.pages
 const getPreviousPage = (state: AppRootStateType) => state.images.info.prev
 const getNextPage = (state: AppRootStateType) => state.images.info.next
+const currentPage = (state: AppRootStateType) => state.images.currentPage
 const getFavorites = (state: AppRootStateType) => state.favorites.favorites
 
 export const imagesSelector = createSelector(
@@ -22,6 +23,10 @@ export const previousPageSelector = createSelector(
 export const nextPageSelector = createSelector(
     getNextPage,
     next => next
+)
+export const currentPageSelector = createSelector(
+    currentPage,
+    page => page
 )
 export const favoritesSelector = createSelector(
     getFavorites,

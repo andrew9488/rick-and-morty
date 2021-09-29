@@ -5,16 +5,16 @@ const ADD_FAVORITE_IMAGE_TO_LS_SAGA = "ADD-FAVORITE-IMAGE-TO-LS-SAGA"
 const GET_FAVORITE_IMAGE_FROM_LS_SAGA = "GET-FAVORITE-IMAGE-FROM-LS-SAGA"
 const DELETE_FAVORITE_IMAGE_FROM_LS_SAGA = "DELETE-FAVORITE-IMAGE-FROM-LS-SAGA"
 
-export const addFavoriteImage = (favorite: ImageType) => ({type: ADD_FAVORITE_IMAGE_TO_LS_SAGA, favorite})
-export const getFavoriteImage = () => ({type: GET_FAVORITE_IMAGE_FROM_LS_SAGA})
-export const deleteFavoriteImage = (id: number) => ({type: DELETE_FAVORITE_IMAGE_FROM_LS_SAGA, id})
+export const addFavoriteImage = (favorite: ImageType) => ({type: ADD_FAVORITE_IMAGE_TO_LS_SAGA, favorite} as const)
+export const getFavoriteImage = () => ({type: GET_FAVORITE_IMAGE_FROM_LS_SAGA} as const)
+export const deleteFavoriteImage = (id: number) => ({type: DELETE_FAVORITE_IMAGE_FROM_LS_SAGA, id} as const)
 
-export const addFavoriteImageAC = (favorite: ImageType) => ({type: "FAVORITE/ADD-FAVORITE-IMAGE", favorite} as const)
+export const addFavoriteImageAC = (favorite: ImageType) => ({type: "FAVORITES/ADD-FAVORITE-IMAGE", favorite} as const)
 export const setFavoriteImageAC = (favorites: ImageType[]) => ({
-    type: "FAVORITE/SET-FAVORITES-IMAGE",
+    type: "FAVORITES/SET-FAVORITES-IMAGE",
     favorites
 } as const)
-export const deleteFavoriteImageAC = (id: number) => ({type: "FAVORITE/DELETE-FAVORITE-IMAGE", id} as const)
+export const deleteFavoriteImageAC = (id: number) => ({type: "FAVORITES/DELETE-FAVORITE-IMAGE", id} as const)
 
 function* addFavoriteImageToLocalStorage(action: ReturnType<typeof addFavoriteImage>) {
     if (action.favorite) {

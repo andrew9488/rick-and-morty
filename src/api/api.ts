@@ -1,12 +1,16 @@
 import axios from "axios";
-import {ResponseDataType} from "../types/types";
+import {ResponseDataType, ResultType} from "../types/types";
 
 const instance = axios.create({
     baseURL: "https://rickandmortyapi.com/"
 });
 
 export const rickAndMortyAPI = {
-    getImages(page: number = 1) {
+    getImages() {
+        return instance.get<ResponseDataType>("api/character/")
+            .then(response => response.data)
+    },
+    getImagesByPage(page: number = 1) {
         return instance.get<ResponseDataType>("api/character/", {
             params: {page}
         })

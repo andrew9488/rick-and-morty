@@ -2,7 +2,8 @@ import {ImagesReducerActionType, ImagesReducerInitialStateType, InfoType, Result
 
 export const imagesReducerInitialState = {
     info: {} as InfoType,
-    results: [] as ResultType[]
+    results: [] as ResultType[],
+    currentPage: 1
 }
 
 export const imagesReducer = (state: ImagesReducerInitialStateType = imagesReducerInitialState, action: ImagesReducerActionType): ImagesReducerInitialStateType => {
@@ -12,6 +13,11 @@ export const imagesReducer = (state: ImagesReducerInitialStateType = imagesReduc
                 ...state,
                 info: action.data.info,
                 results: action.data.results,
+            }
+        case "IMAGES/CHANGE-CURRENT-PAGE":
+            return {
+                ...state,
+                currentPage: action.page
             }
         default:
             return state

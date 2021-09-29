@@ -1,4 +1,5 @@
 export const Path = {
     main: "/",
-    favorite: "/favorite"
+    favorite: "/favorite",
+    content: "/content"
 }
