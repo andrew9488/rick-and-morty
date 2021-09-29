@@ -1,5 +1,5 @@
 import {all} from "redux-saga/effects";
-import {fetchImagesByPageSaga, fetchImagesSaga} from "./images-reducer/actions";
+import {fetchImagesSaga} from "./images-reducer/actions";
 import {
     deleteFavoriteImageFromLocalStorageSaga,
     getFavoriteImageFromLocalStorageSaga,
@@ -12,10 +12,5 @@ export function* rootSaga() {
         setFavoriteImageToLocalStorageSaga(),
         getFavoriteImageFromLocalStorageSaga(),
         deleteFavoriteImageFromLocalStorageSaga(),
-        fetchImagesByPageSaga(),
     ])
 }
-
-// export function* rootSaga() {
-//     yield all([fork(fetchImagesSaga)])
-// }

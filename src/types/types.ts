@@ -1,10 +1,10 @@
 import {rootReducer} from "../store/store";
 import {appReducerInitialState} from "../store/app-reducer/app-reducer";
 import {imagesReducerInitialState} from "../store/images-reducer/images-reducer";
-import {setAppErrorAC, setAppStatusAC} from "../store/app-reducer/actions";
-import {changeCurrentPageAC, setDataAC} from "../store/images-reducer/actions";
-import {addFavoriteImageAC, deleteFavoriteImageAC, setFavoriteImageAC} from "../store/favorites-reducer/actions";
 import {favoritesReducerInitialState} from "../store/favorites-reducer/favorites-reducer";
+import {setAppErrorAC, setAppStatusAC} from "../store/app-reducer/actions";
+import {dataRequestAC, setDataAC} from "../store/images-reducer/actions";
+import {addFavoriteImageAC, deleteFavoriteImageAC, setFavoriteImagesAC} from "../store/favorites-reducer/actions";
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed';
 export type ActionPaginationType = "back" | "forward"
@@ -14,12 +14,13 @@ export type AppReducerInitialStateType = typeof appReducerInitialState;
 export type ImagesReducerInitialStateType = typeof imagesReducerInitialState;
 export type FavoritesReducerInitialStateType = typeof favoritesReducerInitialState;
 
-
 export type AppReducerActionType = ReturnType<typeof setAppStatusAC> | ReturnType<typeof setAppErrorAC>
-export type ImagesReducerActionType = ReturnType<typeof setDataAC> | ReturnType<typeof changeCurrentPageAC>
-export type FavoriteReducerActionType = ReturnType<typeof setFavoriteImageAC>
+export type ImagesReducerActionType = ReturnType<typeof setDataAC> | ReturnType<typeof dataRequestAC>
+export type FavoriteReducerActionType = ReturnType<typeof setFavoriteImagesAC>
     | ReturnType<typeof deleteFavoriteImageAC>
     | ReturnType<typeof addFavoriteImageAC>
+
+export type ParamsType = ReturnType<typeof dataRequestAC>
 
 export type AppRootStateType = ReturnType<typeof rootReducer>;
 

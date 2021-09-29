@@ -2,20 +2,21 @@ import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useHistory, useParams} from "react-router-dom";
 import {Button, Card, CardContent, CardMedia} from "@material-ui/core";
-import {dataRequest} from "../../store/images-reducer/actions";
-import {getResults} from "../../store/selectors";
+import {dataRequestAC} from "../../store/images-reducer/actions";
+import {filterSelector, resultsSelector} from "../../store/selectors";
 import {useStyles} from "./materialUI";
 
 export const Content: React.FC = () => {
 
-    const images = useSelector(getResults)
+    const images = useSelector(resultsSelector)
     const styles = useStyles()
+    const filterData = useSelector(filterSelector)
     const {id} = useParams<{ id: string }>()
     const history = useHistory()
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(dataRequest())
+        dispatch(dataRequestAC(filterData.name, filterData.page, filterData.status, filterData.gender))
     }, [])
 
     const onBackClick = () => {

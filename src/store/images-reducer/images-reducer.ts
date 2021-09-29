@@ -3,7 +3,10 @@ import {ImagesReducerActionType, ImagesReducerInitialStateType, InfoType, Result
 export const imagesReducerInitialState = {
     info: {} as InfoType,
     results: [] as ResultType[],
-    currentPage: 1
+    currentPage: 1,
+    name: "",
+    gender: "",
+    status: ""
 }
 
 export const imagesReducer = (state: ImagesReducerInitialStateType = imagesReducerInitialState, action: ImagesReducerActionType): ImagesReducerInitialStateType => {
@@ -14,10 +17,13 @@ export const imagesReducer = (state: ImagesReducerInitialStateType = imagesReduc
                 info: action.data.info,
                 results: action.data.results,
             }
-        case "IMAGES/CHANGE-CURRENT-PAGE":
+        case "IMAGES/DATA-REQUEST-SAGA":
             return {
                 ...state,
-                currentPage: action.page
+                currentPage: action.page,
+                name: action.name,
+                gender: action.gender,
+                status: action.status
             }
         default:
             return state

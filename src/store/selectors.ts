@@ -1,16 +1,20 @@
 import {AppRootStateType} from "../types/types";
 import {createSelector} from "reselect";
 
-export const getResults = (state: AppRootStateType) => state.images.results
+const getResults = (state: AppRootStateType) => state.images.results
 const getNumbersOfPages = (state: AppRootStateType) => state.images.info.pages
 const getPreviousPage = (state: AppRootStateType) => state.images.info.prev
 const getNextPage = (state: AppRootStateType) => state.images.info.next
-const currentPage = (state: AppRootStateType) => state.images.currentPage
+const getFilterData = (state: AppRootStateType) => state.images
 const getFavorites = (state: AppRootStateType) => state.favorites.favorites
 
 export const imagesSelector = createSelector(
     getResults,
     images => images.map(image => ({id: image.id, image: image.image}))
+)
+export const resultsSelector = createSelector(
+    getResults,
+    data=> data
 )
 export const numbersOfPagesSelector = createSelector(
     getNumbersOfPages,
@@ -24,11 +28,20 @@ export const nextPageSelector = createSelector(
     getNextPage,
     next => next
 )
-export const currentPageSelector = createSelector(
-    currentPage,
-    page => page
-)
+
 export const favoritesSelector = createSelector(
     getFavorites,
     favorites => favorites
+)
+
+export const filterSelector = createSelector(
+    getFilterData,
+    data=>{
+        return{
+            name: data.name,
+            page: data.currentPage,
+            status: data.status,
+            gender: data.gender
+        }
+    }
 )

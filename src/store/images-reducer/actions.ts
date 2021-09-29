@@ -2,23 +2,19 @@ import {call, put, takeEvery} from "redux-saga/effects";
 import {rickAndMortyAPI} from "../../api/api";
 import {setAppErrorAC, setAppStatusAC} from "../app-reducer/actions";
 import {errorMessage} from "../../utils/helpers/erroreMessage";
-import {ResponseDataType} from "../../types/types";
+import {ParamsType, ResponseDataType} from "../../types/types";
 
-const DATA_REQUEST_SAGA = "DATA-REQUEST-SAGA"
-const GET_IMAGE_BY_ID_SAGA = "GET-IMAGE-BY-ID-SAGA"
-const CHANGE_CURRENT_PAGE_SAGA = "IMAGES/CHANGE-CURRENT-PAGE"
+const IMAGES_DATA_REQUEST_SAGA = "IMAGES/DATA-REQUEST-SAGA"
+const IMAGES_SET_DATA = "IMAGES/SET-DATA"
 
-export const dataRequest = () => ({type: DATA_REQUEST_SAGA} as const)
-export const getImageById = (id: number) => ({type: GET_IMAGE_BY_ID_SAGA, id} as const)
+export const dataRequestAC = (name: string, page: number, status: string, gender: string,) =>
+    ({type: IMAGES_DATA_REQUEST_SAGA, name, page, status, gender} as const)
+export const setDataAC = (data: ResponseDataType) => ({type: IMAGES_SET_DATA, data} as const)
 
-
-export const setDataAC = (data: ResponseDataType) => ({type: "IMAGES/SET-DATA", data} as const)
-export const changeCurrentPageAC = (page: number) => ({type: CHANGE_CURRENT_PAGE_SAGA, page} as const)
-
-function* fetchImages() {
+function* fetchImages(action: ParamsType) {
     try {
         yield put(setAppStatusAC("loading"))
-        const response: ResponseDataType = yield call(rickAndMortyAPI.getImages)
+        const response: ResponseDataType = yield call(rickAndMortyAPI.getImages, action)
         yield put(setDataAC(response))
         yield put(setAppStatusAC("succeeded"))
     } catch (error) {
@@ -26,27 +22,7 @@ function* fetchImages() {
         yield put(setAppStatusAC("failed"))
     }
 }
-
-function* fetchImagesByPage(action: ReturnType<typeof changeCurrentPageAC>) {
-    try {
-        yield put(setAppStatusAC("loading"))
-        const response: ResponseDataType = yield call(rickAndMortyAPI.getImagesByPage, action.page)
-        yield put(setDataAC(response))
-        yield put(setAppStatusAC("succeeded"))
-    } catch (error) {
-        yield put(setAppErrorAC(errorMessage(error)))
-        yield put(setAppStatusAC("failed"))
-    }
-}
-
-// export function* imagesSaga() {
-//     yield  all([takeLatest(dataRequestAC().type, fetchImagesSaga)])
-// }
 
 export function* fetchImagesSaga() {
-    yield takeEvery(DATA_REQUEST_SAGA, fetchImages)
-}
-
-export function* fetchImagesByPageSaga() {
-    yield takeEvery(CHANGE_CURRENT_PAGE_SAGA, fetchImagesByPage)
+    yield takeEvery(IMAGES_DATA_REQUEST_SAGA, fetchImages)
 }

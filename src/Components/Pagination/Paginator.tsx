@@ -5,20 +5,21 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import {Button, ButtonGroup} from "@material-ui/core";
 import {useStyles} from "./materialUIstyles";
 import {
-    currentPageSelector,
+    filterSelector,
     nextPageSelector,
     numbersOfPagesSelector,
     previousPageSelector
 } from "../../store/selectors";
 import {ActionPaginationType} from "../../types/types";
-import {changeCurrentPageAC} from "../../store/images-reducer/actions";
+import {dataRequestAC} from "../../store/images-reducer/actions";
+
 
 export const Pagination: React.FC = () => {
 
     const prev = useSelector(previousPageSelector)
     const next = useSelector(nextPageSelector)
     const numberOfPages = useSelector(numbersOfPagesSelector)
-    const currentPage = useSelector(currentPageSelector)
+    const filterData = useSelector(filterSelector)
     const dispatch = useDispatch()
 
     const classes = useStyles()
@@ -27,9 +28,9 @@ export const Pagination: React.FC = () => {
 
     const handlePage = (action: ActionPaginationType) => {
         if (action === "back") {
-            dispatch(changeCurrentPageAC(currentPage - 1))
+            dispatch(dataRequestAC(filterData.name, filterData.page - 1, filterData.status, filterData.gender))
         } else {
-            dispatch(changeCurrentPageAC(currentPage + 1))
+            dispatch(dataRequestAC(filterData.name, filterData.page + 1, filterData.status, filterData.gender))
         }
     }
 
@@ -48,7 +49,7 @@ export const Pagination: React.FC = () => {
                     style={{color: "gray", textTransform: "capitalize"}}
                     disabled={true}
                 >
-                    Page {currentPage} of {numberOfPages}
+                    Page {filterData.page} of {numberOfPages}
                 </Button>
                 <Button
                     className={classes.button}
