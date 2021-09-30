@@ -44,7 +44,8 @@ export const Filter: React.FC<FilterPropsType> = ({statuses, label, genders}) =>
                         value={gender}
                         onChange={handleChangeGender}
                     >{genders.map((g, ind) =>
-                        <FormControlLabel key={ind} value={Object.values(g)} control={<Radio/>}
+                        <FormControlLabel key={ind} value={Object.values(g)}
+                                          control={<Radio className={classes.check} checked={Object.values(g)==gender}/>}
                                           label={Object.keys(g)}/>)
                     }
                     </RadioGroup>
@@ -57,7 +58,8 @@ export const Filter: React.FC<FilterPropsType> = ({statuses, label, genders}) =>
                         value={status}
                         onChange={handleChangeStatus}
                     >{statuses && statuses.map((s, ind) =>
-                        <FormControlLabel key={ind} value={Object.values(s)} control={<Radio/>}
+                        <FormControlLabel key={ind} value={Object.values(s)}
+                                          control={<Radio className={classes.check} checked={Object.values(s)==status}/>}
                                           label={Object.keys(s)}/>)}
                     </RadioGroup>
                 </FormControl>
