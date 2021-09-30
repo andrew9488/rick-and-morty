@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosResponse} from "axios";
 import {ParamsType, ResponseDataType} from "../types/types";
 
 const instance = axios.create({
@@ -6,12 +6,11 @@ const instance = axios.create({
 });
 
 export const rickAndMortyAPI = {
-    getImages(action: ParamsType) {
+    getImages(action: ParamsType): Promise<AxiosResponse<ResponseDataType>> {
         return instance.get<ResponseDataType>("api/character/", {
             params: {
                 name: action.name, page: action.page, status: action.status, gender: action.gender
             }
         })
-            .then(response => response.data)
     },
 };
