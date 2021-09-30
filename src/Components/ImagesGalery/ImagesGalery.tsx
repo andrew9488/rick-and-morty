@@ -16,7 +16,6 @@ export const ImagesGallery: React.FC<ImagesGalleryPropsType> = React.memo(({imag
     const favorites = useSelector(favoritesSelector)
     const status = useSelector(statusSelector)
 
-    debugger
     if(status === "loading"){
         return <Preloader/>
     }
