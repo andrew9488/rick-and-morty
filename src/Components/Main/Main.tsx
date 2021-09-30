@@ -12,6 +12,7 @@ export const Main: React.FC = () => {
 
     const images = useSelector(imagesSelector)
     const filterData = useSelector(filterSelector)
+
     const dispatch = useDispatch()
 
     useEffect(() => {

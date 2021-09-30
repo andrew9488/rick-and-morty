@@ -2,10 +2,11 @@ import {put, takeEvery} from "redux-saga/effects";
 import {ImageType} from "../../types/types";
 
 const ADD_FAVORITE_IMAGE_TO_LS_SAGA = "ADD-FAVORITE-IMAGE-TO-LS-SAGA"
-const GET_FAVORITE_IMAGE_FROM_LS_SAGA = "GET-FAVORITE-IMAGE-FROM-LS-SAGA"
-const DELETE_FAVORITE_IMAGE_FROM_LS_SAGA = "DELETE-FAVORITE-IMAGE-FROM-LS-SAGA"
-const FAVORITES_ADD_FAVORITE_IMAGE = "FAVORITES/ADD-FAVORITE-IMAGE"
-const FAVORITES_SET_FAVORITE_IMAGES = "FAVORITES/SET-FAVORITE-IMAGES"
+const GET_FAVORITE_IMAGE_FROM_LS_SAGA = "GET-FAVORITES-IMAGES-FROM-LS-SAGA"
+const DELETE_FAVORITE_IMAGE_FROM_LS_SAGA = "DELETE-FAVORITES-IMAGE-FROM-LS-SAGA"
+const FAVORITES_ADD_FAVORITE_IMAGE = "FAVORITES/ADD-FAVORITES-IMAGE"
+const FAVORITES_SET_FAVORITE_IMAGES = "FAVORITES/SET-FAVORITES-IMAGES"
+const FAVORITES_DELETE_FAVORITE_IMAGE = "FAVORITES/DELETE-FAVORITES-IMAGE"
 
 export const addFavoriteImage = (favorite: ImageType) => ({type: ADD_FAVORITE_IMAGE_TO_LS_SAGA, favorite} as const)
 export const getFavoriteImage = () => ({type: GET_FAVORITE_IMAGE_FROM_LS_SAGA} as const)
@@ -14,11 +15,11 @@ export const deleteFavoriteImage = (id: number) => ({type: DELETE_FAVORITE_IMAGE
 export const addFavoriteImageAC = (favorite: ImageType) => ({type: FAVORITES_ADD_FAVORITE_IMAGE, favorite} as const)
 export const setFavoriteImagesAC = (favorites: ImageType[]) =>
     ({type: FAVORITES_SET_FAVORITE_IMAGES, favorites} as const)
-export const deleteFavoriteImageAC = (id: number) => ({type: "FAVORITES/DELETE-FAVORITE-IMAGE", id} as const)
+export const deleteFavoriteImageAC = (id: number) => ({type: FAVORITES_DELETE_FAVORITE_IMAGE, id} as const)
 
 function* addFavoriteImageToLocalStorage(action: ReturnType<typeof addFavoriteImage>) {
     if (action.favorite) {
-        let favoriteImages = JSON.parse(<string>localStorage.getItem("favorite_images"))
+        let favoriteImages = JSON.parse(localStorage.getItem("favorite_images") as string)
         if (favoriteImages === null) favoriteImages = []
         favoriteImages.push(action.favorite)
         localStorage.setItem("favorite_images", JSON.stringify(favoriteImages))
@@ -35,7 +36,7 @@ function* getFavoriteImageFromLocalStorage() {
 }
 
 function* deleteFavoriteImageFromLocalStorage(action: ReturnType<typeof deleteFavoriteImage>) {
-    let favoriteImages: ImageType[] = JSON.parse(<string>localStorage.getItem("favorite_images"))
+    let favoriteImages: ImageType[] = JSON.parse(localStorage.getItem("favorite_images") as string)
     if (favoriteImages) {
         let filterImages = favoriteImages.filter(f => f.id !== action.id)
         localStorage.setItem("favorite_images", JSON.stringify(filterImages))
